@@ -25,4 +25,30 @@ public class EventCalendarManagement extends JFrame {
         setSize(800, 600);
         initComponents();
     }
+    private void initComponents() {
+        tableModel = new DefaultTableModel();
+        tableModel.addColumn("Number");
+        tableModel.addColumn("Event Name");
+        tableModel.addColumn("Event Date");
+        tableModel.addColumn("Event Details");
+
+        eventTable = new JTable(tableModel);
+        eventTable.getColumnModel().getColumn(0).setPreferredWidth(50); // Set column width for numbers
+
+        addButton = new JButton("Add Event");
+        editButton = new JButton("Edit Event");
+        deleteButton = new JButton("Delete Event");
+        detailsButton = new JButton("Event Details");
+        editDetailsButton = new JButton("Edit Details");
+
+        setLayout(new BorderLayout());
+        JPanel controlPanel = new JPanel(new FlowLayout());
+        controlPanel.add(addButton);
+        controlPanel.add(editButton);
+        controlPanel.add(deleteButton);
+        controlPanel.add(detailsButton);
+        controlPanel.add(editDetailsButton);
+
+        add(new JScrollPane(eventTable), BorderLayout.CENTER);
+        add(controlPanel, BorderLayout.SOUTH);
 }
