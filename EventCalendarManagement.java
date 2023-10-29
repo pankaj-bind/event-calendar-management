@@ -19,4 +19,10 @@ public class EventCalendarManagement extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new EventCalendarManagement().setVisible(true));
     }
+    public EventCalendarManagement() {
+        setTitle("Event Calendar Management");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
+        initComponents();
+    }
 }
