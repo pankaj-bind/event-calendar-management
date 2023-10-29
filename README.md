@@ -20,3 +20,11 @@ This Java application allows users to manage events with event names, dates, and
 1. Clone the repository to your local machine.
    ```bash
    git clone https://github.com/your-username/event-calendar-management.git
+2. Navigate to the project directory.
+   ```bash
+   cd event-calendar-management
+3. Compile and run the application.
+   ```bash
+   javac EventCalendarManagement.java
+   java EventCalendarManagement
+
