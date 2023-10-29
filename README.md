@@ -35,6 +35,10 @@ This Java application allows users to manage events with event names, dates, and
 
 
 ## Screenshots
+![Enter event](https://github.com/Pankaj-Bind/event-calendar-management/blob/main/output/enter%20event.png) <br>
+![Enter date]([command-image.png](https://github.com/Pankaj-Bind/event-calendar-management/blob/main/output/enter%20date.png)) <br>
+![Enter details]([command-image.png](https://github.com/Pankaj-Bind/event-calendar-management/blob/main/output/enter%20date.png)) <br>
+![Enter date]([command-image.png](https://github.com/Pankaj-Bind/event-calendar-management/blob/main/output/enter%20date.png)) <br>
 
 
 ## Contributing
