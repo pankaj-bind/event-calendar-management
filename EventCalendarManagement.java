@@ -165,4 +165,15 @@ public class EventCalendarManagement extends JFrame {
             updateEventTable();
         }
     }
+    private void showEventDetails(Event event) {
+        JOptionPane.showMessageDialog(this, "Event Name: " + event.getName() + "\nEvent Date: " + event.getDateStr() +
+                "\nEvent Details: " + event.getDetails());
+    }
+    private void updateEventTable() {
+        tableModel.setRowCount(0);
+        for (int i = 0; i < events.size(); i++) {
+            Event event = events.get(i);
+            tableModel.addRow(new Object[]{i + 1, event.getName(), event.getDateStr(), event.getDetails()});
+        }
+    }
 }
