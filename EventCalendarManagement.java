@@ -51,4 +51,15 @@ public class EventCalendarManagement extends JFrame {
 
         add(new JScrollPane(eventTable), BorderLayout.CENTER);
         add(controlPanel, BorderLayout.SOUTH);
+
+        addButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Event newEvent = createNewEvent();
+                if (newEvent != null) {
+                    events.add(newEvent);
+                    Collections.sort(events);
+                    updateEventTable();
+                }
+            }
+        });
 }
