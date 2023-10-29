@@ -118,4 +118,15 @@ public class EventCalendarManagement extends JFrame {
         }
         return null;
     }
+    private boolean isValidDate(String dateStr) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        dateFormat.setLenient(false);
+
+        try {
+            dateFormat.parse(dateStr);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
 }
