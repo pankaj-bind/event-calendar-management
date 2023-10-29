@@ -28,3 +28,21 @@ This Java application allows users to manage events with event names, dates, and
    javac EventCalendarManagement.java
    java EventCalendarManagement
 
+## Usage
+
+- When you run the application, a window will appear with options to Add, Edit, Delete, and View event details.
+- Click the corresponding button to perform the desired action.
+
+
+## Screenshots
+
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request with any improvements.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+
