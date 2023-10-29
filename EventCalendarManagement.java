@@ -158,4 +158,11 @@ public class EventCalendarManagement extends JFrame {
             }
         }
     }
+    private void editEventDetails(Event event) {
+        String newDetails = JOptionPane.showInputDialog(this, "Edit event details:", event.getDetails());
+        if (newDetails != null) {
+            event.setDetails(newDetails);
+            updateEventTable();
+        }
+    }
 }
