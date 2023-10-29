@@ -16,5 +16,7 @@ public class EventCalendarManagement extends JFrame {
     private DefaultTableModel tableModel;
     private JButton addButton, editButton, deleteButton, detailsButton, editDetailsButton;
 
-    
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new EventCalendarManagement().setVisible(true));
+    }
 }
