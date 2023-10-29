@@ -62,4 +62,14 @@ public class EventCalendarManagement extends JFrame {
                 }
             }
         });
+        editButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Event selectedEvent = getSelectedEvent();
+                if (selectedEvent != null) {
+                    editEvent(selectedEvent);
+                    Collections.sort(events);
+                    updateEventTable();
+                }
+            }
+        });
 }
