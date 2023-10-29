@@ -129,4 +129,33 @@ public class EventCalendarManagement extends JFrame {
             return false;
         }
     }
+    private Event getSelectedEvent() {
+        int selectedRow = eventTable.getSelectedRow();
+        if (selectedRow != -1) {
+            int selectedEventIndex = (int) eventTable.getValueAt(selectedRow, 0) - 1;
+            if (selectedEventIndex >= 0 && selectedEventIndex < events.size()) {
+                return events.get(selectedEventIndex);
+            }
+        }
+        return null;
+    }
+
+    private void editEvent(Event event) {
+        String newName = JOptionPane.showInputDialog(this, "Enter new event name:", event.getName());
+        if (newName != null && !newName.trim().isEmpty()) {
+            String newDateStr = JOptionPane.showInputDialog(this, "Enter new event date (dd-MM-yyyy):", event.getDateStr());
+            if (isValidDate(newDateStr)) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                try {
+                    Date newDate = dateFormat.parse(newDateStr);
+                    event.setName(newName);
+                    event.setDate(newDate);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "An error occurred while parsing the date. Event not edited.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid date format. Event not edited.");
+            }
+        }
+    }
 }
