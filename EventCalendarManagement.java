@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 
 public class EventCalendarManagement extends JFrame {
     private List<Event> events = new ArrayList<>();
@@ -19,12 +20,14 @@ public class EventCalendarManagement extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new EventCalendarManagement().setVisible(true));
     }
+
     public EventCalendarManagement() {
         setTitle("Event Calendar Management");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
         initComponents();
     }
+
     private void initComponents() {
         tableModel = new DefaultTableModel();
         tableModel.addColumn("Number");
@@ -33,7 +36,7 @@ public class EventCalendarManagement extends JFrame {
         tableModel.addColumn("Event Details");
 
         eventTable = new JTable(tableModel);
-        eventTable.getColumnModel().getColumn(0).setPreferredWidth(50); // Set column width for numbers
+        eventTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 
         addButton = new JButton("Add Event");
         editButton = new JButton("Edit Event");
@@ -62,6 +65,7 @@ public class EventCalendarManagement extends JFrame {
                 }
             }
         });
+
         editButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Event selectedEvent = getSelectedEvent();
@@ -72,6 +76,7 @@ public class EventCalendarManagement extends JFrame {
                 }
             }
         });
+
         deleteButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Event selectedEvent = getSelectedEvent();
@@ -81,6 +86,7 @@ public class EventCalendarManagement extends JFrame {
                 }
             }
         });
+
         detailsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Event selectedEvent = getSelectedEvent();
@@ -89,6 +95,7 @@ public class EventCalendarManagement extends JFrame {
                 }
             }
         });
+
         editDetailsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Event selectedEvent = getSelectedEvent();
@@ -98,6 +105,7 @@ public class EventCalendarManagement extends JFrame {
             }
         });
     }
+
     private Event createNewEvent() {
         String name = JOptionPane.showInputDialog(this, "Enter event name:");
         if (name != null && !name.trim().isEmpty()) {
@@ -118,6 +126,7 @@ public class EventCalendarManagement extends JFrame {
         }
         return null;
     }
+
     private boolean isValidDate(String dateStr) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateFormat.setLenient(false);
@@ -129,6 +138,7 @@ public class EventCalendarManagement extends JFrame {
             return false;
         }
     }
+
     private Event getSelectedEvent() {
         int selectedRow = eventTable.getSelectedRow();
         if (selectedRow != -1) {
@@ -158,6 +168,7 @@ public class EventCalendarManagement extends JFrame {
             }
         }
     }
+
     private void editEventDetails(Event event) {
         String newDetails = JOptionPane.showInputDialog(this, "Edit event details:", event.getDetails());
         if (newDetails != null) {
@@ -165,10 +176,37 @@ public class EventCalendarManagement extends JFrame {
             updateEventTable();
         }
     }
+
     private void showEventDetails(Event event) {
-        JOptionPane.showMessageDialog(this, "Event Name: " + event.getName() + "\nEvent Date: " + event.getDateStr() +
-                "\nEvent Details: " + event.getDetails());
+        JTextArea textArea = new JTextArea();
+        textArea.setText("Event Name: " + event.getName() + "\nEvent Date: " + event.getDateStr() +
+                "\nEvent Details:\n" + wrapText(event.getDetails(), 60)); 
+
+        textArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setPreferredSize(new Dimension(600, 400));
+
+        JOptionPane.showMessageDialog(this, scrollPane);
     }
+
+    private String wrapText(String input, int maxLineLength) {
+        String[] words = input.split(" ");
+        StringBuilder result = new StringBuilder();
+
+        int lineLength = 0;
+        for (String word : words) {
+            if (lineLength + word.length() <= maxLineLength) {
+                result.append(word).append(" ");
+                lineLength += word.length() + 1;
+            } else {
+                result.append("\n").append(word).append(" ");
+                lineLength = word.length() + 1;
+            }
+        }
+
+        return result.toString();
+    }
+
     private void updateEventTable() {
         tableModel.setRowCount(0);
         for (int i = 0; i < events.size(); i++) {
@@ -176,6 +214,7 @@ public class EventCalendarManagement extends JFrame {
             tableModel.addRow(new Object[]{i + 1, event.getName(), event.getDateStr(), event.getDetails()});
         }
     }
+
     public class Event implements Comparable<Event> {
         private String name;
         private Date date;
