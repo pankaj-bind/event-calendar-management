@@ -176,4 +176,54 @@ public class EventCalendarManagement extends JFrame {
             tableModel.addRow(new Object[]{i + 1, event.getName(), event.getDateStr(), event.getDetails()});
         }
     }
+    public class Event implements Comparable<Event> {
+        private String name;
+        private Date date;
+        private String details;
+
+        public Event(String name, Date date, String details) {
+            this.name = name;
+            this.date = date;
+            this.details = details;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Date getDate() {
+            return date;
+        }
+
+        public void setDate(Date date) {
+            this.date = date;
+        }
+
+        public String getDetails() {
+            return details;
+        }
+
+        public void setDetails(String details) {
+            this.details = details;
+        }
+
+        public String getDateStr() {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            return dateFormat.format(date);
+        }
+
+        @Override
+        public String toString() {
+            return "Event: " + name + " Date: " + getDateStr() + " Details: " + details;
+        }
+
+        @Override
+        public int compareTo(Event otherEvent) {
+            return this.date.compareTo(otherEvent.date);
+        }
+    }
 }
